@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var typescript = require('gulp-tsc');
 
 gulp.task('compile', function () {
-	gulp.src(['ts/app.ts'])
+	gulp.src(['ts/*.ts'])
 	.pipe(typescript())
 	.pipe(gulp.dest('js/'))
 });

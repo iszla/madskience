@@ -1,4 +1,4 @@
-/// <reference path="phaser/phaser.d.ts" />
+/// <reference path="phaser.d.ts" />
 
 class MadSkience {
 	constructor() {
@@ -20,7 +20,6 @@ class MadSkience {
 	cursors: Phaser.CursorKeys;
 	
 	preload() {
-		
 		this.game.load.tilemap('map', 'maps/map1.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.image('tiles', 'maps/scifi_platformTiles_32x32.png');
 		this.game.load.image('player', 'images/player.png');
@@ -39,6 +38,7 @@ class MadSkience {
 		// Create map layers
 		this.map.createLayer('BG').resizeWorld();
 		this.world = this.map.createLayer('Floors');
+		this.map.createLayer('Menu');
 		
 		// Create player
 		this.player = new Phaser.Sprite(this.game, 128, 256, 'player');
