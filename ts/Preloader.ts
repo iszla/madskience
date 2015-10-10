@@ -10,6 +10,7 @@ module MadSkience {
             this.load.image('tileset', 'maps/tilemap.png');
             this.load.image('player', 'images/player.png');
             this.load.image('bullet', 'images/bullet.png');
+            this.load.image('gameover', 'images/gameover.png');
             
             this.load.image('pig', 'images/pig.png');
             this.load.image('pigParticle', 'images/pigParticle.png');
@@ -25,6 +26,8 @@ module MadSkience {
             this.load.audio('chickAttack', 'sounds/chicken_attack.wav');
             this.load.audio('cowAttack', 'sounds/cow_attack.wav');
             this.load.audio('pigAttack', 'sounds/pig_attack.wav');
+            this.load.audio('jump', 'sounds/jump.wav');
+            this.load.audio('start', 'sounds/start.wav');
         }
  
         create() {

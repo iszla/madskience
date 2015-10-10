@@ -12,7 +12,7 @@ var MadSkience;
             _super.apply(this, arguments);
         }
         Play.prototype.create = function () {
-            var style = { font: "65px Arial", fill: "#ff0000", align: "center" };
+            var style = { font: "36px Play", fill: "#ff0000", align: "center" };
             this.scoreValue = 0;
             this.spawnPoints = new Array(5);
             this.spawnPoints[0] = new Phaser.Point(190, 182);
@@ -29,6 +29,7 @@ var MadSkience;
             this.pigSound = this.game.add.sound('pigAttack');
             this.dieSound = this.game.add.audio('death');
             this.killSound = this.game.add.audio('kill');
+            this.jumpSound = this.game.add.audio('jump');
             // Init physics
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
             // Load map
@@ -38,7 +39,7 @@ var MadSkience;
             this.map.createLayer('BG').resizeWorld();
             this.floors = this.map.createLayer('Floors');
             this.latestSpawn = this.game.time.now;
-            this.difficulty = 5000;
+            this.difficulty = 4000;
             // Bullets
             this.bullets = this.game.add.group();
             this.bullets.enableBody = true;
@@ -96,7 +97,7 @@ var MadSkience;
             // JUMP!
             this.cursors.up.onDown.add(this.moveJump, this);
             this.fire.onDown.add(this.shoot, this);
-            this.scoreText = this.game.add.text(0, 0, "Score: ", style);
+            this.scoreText = this.game.add.text(this.game.world.centerX - 60, 0, "Score: ", style);
             var pig;
             for (var i = 0; i < 5; i++) {
                 if (i % 2 == 0) {
@@ -142,6 +143,9 @@ var MadSkience;
             this.game.physics.arcade.overlap(this.player, this.pigs, this.gameOver, null, this);
             this.game.physics.arcade.overlap(this.player, this.chickens, this.gameOver, null, this);
             this.game.physics.arcade.overlap(this.player, this.cows, this.gameOver, null, this);
+            if (this.player.position.y > 730) {
+                this.gameOver();
+            }
             // I like to move it move it
             this.player.body.velocity.x = 0;
             if (this.cursors.left.isDown) {
@@ -232,12 +236,14 @@ var MadSkience;
             var _this = this;
             if (this.player.body.blocked.down) {
                 this.player.body.velocity.y = -500;
+                this.jumpSound.play();
                 setTimeout(function () {
                     _this.doubleJumpReady = true;
                 }, 250);
             }
             else if (this.doubleJumpReady) {
                 this.player.body.velocity.y += -350;
+                this.jumpSound.play();
                 this.doubleJumpReady = false;
             }
         };

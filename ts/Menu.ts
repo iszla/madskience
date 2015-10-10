@@ -5,6 +5,7 @@ module MadSkience {
         logo: Phaser.Sprite;
         map: Phaser.Tilemap;
         pressSpace: Phaser.Text;
+        startSound: Phaser.Sound;
         fire: Phaser.Key;
  
         create() {
@@ -12,7 +13,8 @@ module MadSkience {
             this.fire = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
             this.map = this.game.add.tilemap('map');
             this.map.addTilesetImage('homemaid', 'tileset');
-            var style2 = { font: "32px Arial", fill: "#ff0000", align: "center" };
+            this.startSound = this.game.add.audio('start');
+            var style2 = { font: "32px Play", fill: "#ff0000", align: "center" };
             
             // Create map layers
             this.map.createLayer('BG').resizeWorld();
@@ -37,6 +39,7 @@ module MadSkience {
         }
  
         startGame() {
+            this.startSound.play();
             this.game.state.start('Play', true, false);
         }
     }

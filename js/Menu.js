@@ -17,7 +17,8 @@ var MadSkience;
             this.fire = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
             this.map = this.game.add.tilemap('map');
             this.map.addTilesetImage('homemaid', 'tileset');
-            var style2 = { font: "32px Arial", fill: "#ff0000", align: "center" };
+            this.startSound = this.game.add.audio('start');
+            var style2 = { font: "32px Play", fill: "#ff0000", align: "center" };
             // Create map layers
             this.map.createLayer('BG').resizeWorld();
             this.logo = this.game.add.sprite(-300, 420, 'logo');
@@ -35,6 +36,7 @@ var MadSkience;
             tween.onComplete.add(this.startGame, this);
         };
         Menu.prototype.startGame = function () {
+            this.startSound.play();
             this.game.state.start('Play', true, false);
         };
         return Menu;

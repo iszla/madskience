@@ -30,12 +30,13 @@ module MadSkience {
         laser: Phaser.Sound;
         dieSound: Phaser.Sound;
         killSound: Phaser.Sound;
+        jumpSound: Phaser.Sound;
         
         
         cursors: Phaser.CursorKeys;
  
         create() {
-            var style = { font: "65px Arial", fill: "#ff0000", align: "center" };
+            var style = { font: "36px Play", fill: "#ff0000", align: "center" };
             this.scoreValue = 0;
             
             this.spawnPoints = new Array(5);
@@ -56,6 +57,7 @@ module MadSkience {
             this.pigSound = this.game.add.sound('pigAttack');
             this.dieSound = this.game.add.audio('death');
             this.killSound = this.game.add.audio('kill');
+            this.jumpSound = this.game.add.audio('jump');
             
             // Init physics
             this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -69,7 +71,7 @@ module MadSkience {
             this.floors = this.map.createLayer('Floors');
             
             this.latestSpawn = this.game.time.now;
-            this.difficulty = 5000;
+            this.difficulty = 4000;
             
             // Bullets
             this.bullets = this.game.add.group();
@@ -140,9 +142,10 @@ module MadSkience {
             
             // JUMP!
             this.cursors.up.onDown.add(this.moveJump, this);
+            
             this.fire.onDown.add(this.shoot, this);
             
-            this.scoreText = this.game.add.text(0, 0, "Score: ", style);
+            this.scoreText = this.game.add.text(this.game.world.centerX - 60, 0, "Score: ", style);
             
             var pig;
             
@@ -196,6 +199,9 @@ module MadSkience {
             this.game.physics.arcade.overlap(this.player, this.pigs , this.gameOver, null, this);
             this.game.physics.arcade.overlap(this.player, this.chickens , this.gameOver, null, this);
             this.game.physics.arcade.overlap(this.player, this.cows , this.gameOver, null, this);
+            if(this.player.position.y > 730) {
+                this.gameOver();
+            }
             
             // I like to move it move it
             this.player.body.velocity.x = 0;
@@ -295,11 +301,13 @@ module MadSkience {
         moveJump() {
             if(this.player.body.blocked.down) {
                 this.player.body.velocity.y = -500;
+                this.jumpSound.play();
                 setTimeout(() => {
                     this.doubleJumpReady = true;
                 }, 250);
             } else if(this.doubleJumpReady) {
                 this.player.body.velocity.y += -350;
+                this.jumpSound.play();
                 this.doubleJumpReady = false;
             }
         }
