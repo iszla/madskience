@@ -466,7 +466,7 @@ module MadSkience {
         }
         
         setCurrentDifficulty() {
-            return this.difficulty - (this.scoreValue * 10);
+            return this.difficulty - (this.scoreValue * 30);
         }
         
         gameOver() {

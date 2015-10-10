@@ -384,7 +384,7 @@ var MadSkience;
             chick.body.gravity.y = 800;
         };
         Play.prototype.setCurrentDifficulty = function () {
-            return this.difficulty - (this.scoreValue * 10);
+            return this.difficulty - (this.scoreValue * 30);
         };
         Play.prototype.gameOver = function () {
             this.dieSound.play();

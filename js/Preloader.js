@@ -12,6 +12,9 @@ var MadSkience;
             _super.apply(this, arguments);
         }
         Preloader.prototype.preload = function () {
+            this.game.scale.pageAlignHorizontally = true;
+            this.game.scale.pageAlignVertically = true;
+            this.game.scale.refresh();
             this.load.image('logo', 'images/logo.png');
             this.load.tilemap('map', 'maps/map1.json', null, Phaser.Tilemap.TILED_JSON);
             this.load.image('tileset', 'maps/tilemap.png');
