@@ -14,15 +14,33 @@ var MadSkience;
         Preloader.prototype.preload = function () {
             this.load.image('logo', 'images/logo.png');
             this.load.tilemap('map', 'maps/map1.json', null, Phaser.Tilemap.TILED_JSON);
-            this.load.image('tiles', 'maps/scifi_platformTiles_32x32.png');
+            this.load.image('tileset', 'maps/tilemap.png');
             this.load.image('player', 'images/player.png');
+            this.load.image('bullet', 'images/bullet.png');
+            this.load.image('pig', 'images/pig.png');
+            this.load.image('pigParticle', 'images/pigParticle.png');
+            this.load.image('cow', 'images/cow.png');
+            this.load.image('cowParticle', 'images/cowParticle.png');
+            this.load.image('chicken', 'images/chicken.png');
+            this.load.image('chickenParticle', 'images/chickenParticle.png');
+            // Load sounds
+            this.load.audio('death', 'sounds/player_die.wav');
+            this.load.audio('kill', 'sounds/enemy_die.wav');
+            this.load.audio('lazer', 'sounds/laser.wav');
+            this.load.audio('chickAttack', 'sounds/chicken_attack.wav');
+            this.load.audio('cowAttack', 'sounds/cow_attack.wav');
+            this.load.audio('pigAttack', 'sounds/pig_attack.wav');
         };
         Preloader.prototype.create = function () {
             var _this = this;
             console.log("Preloader");
+            this.load.onLoadComplete.addOnce(this.loadMenu, this);
             setTimeout(function () {
-                _this.game.state.start('Menu', true, false);
-            }, 1000);
+                _this.loadMenu();
+            }, 5000);
+        };
+        Preloader.prototype.loadMenu = function () {
+            this.game.state.start('Menu', true, false);
         };
         return Preloader;
     })(Phaser.State);

@@ -14,6 +14,7 @@ var MadSkience;
             this.state.add('Preloader', MadSkience.Preloader, false);
             this.state.add('Menu', MadSkience.Menu, false);
             this.state.add('Play', MadSkience.Play, false);
+            this.state.add('GameOver', MadSkience.GameOver, false);
             this.state.start('Preloader');
         }
         return Game;
