@@ -8,7 +8,7 @@ Info:
 * Engine: [Phaser](http://phaser.io)
 * Editor: [Visual Studio Code](https://code.visualstudio.com/)
 * Artwork: Made in [mtPaint](http://mtpaint.sourceforge.net/)
-* Sounds: AUdacity and [jsfxr](http://github.grumdrig.com/jsfxr/)
+* Sounds: Audacity and [jsfxr](http://github.grumdrig.com/jsfxr/)
 
 [Play here](http://iszla.se/projects/js48/)
 
