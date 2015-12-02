@@ -10,7 +10,7 @@ Info:
 * Artwork: Made in [mtPaint](http://mtpaint.sourceforge.net/)
 * Sounds: Audacity and [jsfxr](http://github.grumdrig.com/jsfxr/)
 
-[Play here](http://iszla.se/projects/js48/)
+[Play here](http://iszla.se/stuff/js48/)
 
 You play as R2BCN, pronounced R2Bacon, and you are a security droid in a meat factory. The cows, chickens and pigs in your factory has started a riot and are trying to escape. Why? Because of the genemodification we have been doing on them has made them square, so we could fit more animals in one factory, and when transporting the animals around, they can be packed much more efficiently.
 
